@@ -41,6 +41,7 @@ export default function SettingsPage() {
           value={s.depositPct}
           onChange={(e)=>setS({...s, depositPct: Number(e.target.value || 0)})}
         />
+        <p className="text-sm text-gray-500">Usaremos este porcentaje para calcular el anticipo del pago.</p>
       </div>
 
       <div className="grid gap-2">
@@ -51,6 +52,7 @@ export default function SettingsPage() {
           value={s.expiresHours}
           onChange={(e)=>setS({...s, expiresHours: Number(e.target.value || 1)})}
         />
+        <p className="text-sm text-gray-500">Tras este tiempo, el link de pago caducará.</p>
       </div>
 
       <div className="grid gap-2">
@@ -60,10 +62,11 @@ export default function SettingsPage() {
           value={s.waTemplate}
           onChange={(e)=>setS({...s, waTemplate: e.target.value})}
         />
+        <p className="text-sm text-gray-500">Puedes usar {`{nombre}`} y {`{link}`} en el mensaje.</p>
       </div>
 
       <div className="flex gap-3">
-        <Button type="submit">Guardar (demo)</Button>
+        <Button type="submit">Guardar cambios</Button>
         <Button type="button" variant="outline"
           onClick={()=>{ localStorage.removeItem(KEY); location.reload(); }}>
           Reiniciar demo
