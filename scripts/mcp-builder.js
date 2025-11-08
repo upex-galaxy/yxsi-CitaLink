@@ -21,6 +21,7 @@ const codeAgentName = aiCommandPath ? path.basename(aiCommandPath) : null;
 
 // Perfiles predefinidos (refinados según tus sugerencias)
 const PROFILES = {
+  yxsi: ['github', 'slack', 'notion', 'supabase', 'playwright', 'postman', 'context7'],
   backend: ['supabase', 'context7'],
   frontend: ['playwright', 'context7'],
   report: ['github', 'atlassian', 'slack'],
@@ -40,7 +41,7 @@ function loadCatalog() {
     console.error('💡 Crea el archivo con tus MCPs disponibles');
     process.exit(1);
   }
-  
+
   try {
     const content = fs.readFileSync(mcpCatalogFile, 'utf8');
     return JSON.parse(content);
@@ -104,14 +105,14 @@ function generateMcpJson(selectedMcps, catalog) {
     console.log(`✅ ${MCP_FILE} generado (vacío)`);
     return;
   }
-  
+
   // Construir objeto mcpServers con solo los seleccionados
   selectedMcps.forEach(name => {
     mcpServers[name] = catalog.mcpServers[name];
   });
-  
+
   const config = { mcpServers };
-  
+
   // Escribir nuevo .mcp.json
   fs.writeFileSync(mcpFile, JSON.stringify(config, null, 2), 'utf8');
   console.log(`✅ ${MCP_FILE} generado`);
@@ -143,10 +144,10 @@ function startCodeAgentCLI() {
 // ============ MAIN ============
 function main() {
   console.log(`🔧 MCP Builder\n`);
-  
+
   const catalog = loadCatalog();
   const selectedMcps = parseArgs(catalog);
-  
+
   generateMcpJson(selectedMcps, catalog);
   startCodeAgentCLI();
 }

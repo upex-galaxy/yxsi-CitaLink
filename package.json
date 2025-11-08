@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ai": "node scripts/mcp-builder.js"
+    "ai": "node scripts/mcp-builder.js",
+    "dev": "pnpm --filter web dev"
   },
   "keywords": [],
   "author": "",

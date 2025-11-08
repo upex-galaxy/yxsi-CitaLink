@@ -1,0 +1,93 @@
+﻿import Link from "next/link";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+export const dynamic = "force-dynamic";
+
+async function getMock() {
+  return [
+    {
+      id: "abc123",
+      patient: "Ana PÃ©rez",
+      when: "2025-01-10 10:00",
+      deposit: 30,
+      status: "Pendiente",
+    },
+    {
+      id: "def456",
+      patient: "Carlos GarcÃ­a",
+      when: "2025-01-11 12:30",
+      deposit: 50,
+      status: "Pagado",
+    },
+    {
+      id: "ghi789",
+      patient: "Laura MartÃ­n",
+      when: "2025-01-09 16:00",
+      deposit: 25,
+      status: "Expirado",
+    },
+  ];
+}
+
+export default async function List() {
+  const data = await getMock();
+  return (
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between">
+        <div>
+          <CardTitle>CitaLinks</CardTitle>
+          <CardDescription>
+            Gestiona los links de pago para tus citas.
+          </CardDescription>
+        </div>
+        <Link href="/appointments/new">
+          <Button>Nuevo CitaLink</Button>
+        </Link>
+      </CardHeader>
+      <CardContent>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Paciente</TableHead>
+              <TableHead className="text-center">Fecha/Hora</TableHead>
+              <TableHead className="text-center">Anticipo</TableHead>
+              <TableHead className="text-center">Estado</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {data.map((x) => (
+              <TableRow key={x.id}>
+                <TableCell className="font-medium">{x.patient}</TableCell>
+                <TableCell className="text-center">{x.when}</TableCell>
+                <TableCell className="text-center">â‚¬ {x.deposit}</TableCell>
+                <TableCell className="text-center">
+                              <Badge variant={x.status === 'Pagado' ? 'default' : x.status === 'Pendiente' ? 'secondary' : 'destructive'}>
+                                {x.status}
+                              </Badge>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+              );
+            }
+            
+

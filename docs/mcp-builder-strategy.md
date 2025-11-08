@@ -66,12 +66,12 @@ Result: 90% token reduction
 
 **Key Insight**: One task = One session = Specific MCP subset
 
-| Task Type | MCPs Needed | Token Savings |
-|-----------|-------------|---------------|
-| Backend coding | supabase, context7 | ~85% |
-| Frontend coding | playwright, context7 | ~85% |
-| API testing | postman, context7 | ~90% |
-| Documentation | notion, context7, tavity | ~80% |
+| Task Type       | MCPs Needed              | Token Savings |
+| --------------- | ------------------------ | ------------- |
+| Backend coding  | supabase, context7       | ~85%          |
+| Frontend coding | playwright, context7     | ~85%          |
+| API testing     | postman, context7        | ~90%          |
+| Documentation   | notion, context7, tavity | ~80%          |
 
 ---
 
@@ -147,10 +147,10 @@ User: node scripts/mcp-builder.js backend
 
 Pick your preferred CLI tool:
 
-| Tool | Template File | Catalog File (you create) | Config File (auto-generated) |
-|------|---------------|---------------------------|------------------------------|
-| **Gemini** | `templates/mcp/gemini.template.json` | `.gemini/settings.catalog.json` | `.gemini/settings.json` |
-| **Claude** | `templates/mcp/claude.template.json` | `.mcp.catalog.json` | `.mcp.json` |
+| Tool       | Template File                        | Catalog File (you create)       | Config File (auto-generated) |
+| ---------- | ------------------------------------ | ------------------------------- | ---------------------------- |
+| **Gemini** | `templates/mcp/gemini.template.json` | `.gemini/settings.catalog.json` | `.gemini/settings.json`      |
+| **Claude** | `templates/mcp/claude.template.json` | `.mcp.catalog.json`             | `.mcp.json`                  |
 
 ### Step 2: Copy Template to Create Catalog
 
@@ -306,17 +306,17 @@ node scripts/mcp-builder.js full
 
 ## 📋 Predefined Profiles
 
-| Profile | MCPs | Use Case | Token Savings |
-|---------|------|----------|---------------|
-| `backend` | supabase, context7 | Backend dev + DB | ~85% |
-| `frontend` | playwright, context7 | Frontend + E2E tests | ~85% |
-| `apitest` | postman, context7 | API testing | ~90% |
-| `uitest` | playwright, devtools, context7 | UI testing | ~80% |
-| `report` | github, atlassian, slack | Project management | ~80% |
-| `docs` | notion, context7, tavity | Documentation | ~80% |
-| `dbtest` | supabase, context7 | Database testing | ~85% |
-| `e2etest` | playwright, postman, supabase, context7 | Full-stack testing | ~70% |
-| `full` | ALL ⚠️ | Debugging/exploration | 0% |
+| Profile    | MCPs                                    | Use Case              | Token Savings |
+| ---------- | --------------------------------------- | --------------------- | ------------- |
+| `backend`  | supabase, context7                      | Backend dev + DB      | ~85%          |
+| `frontend` | playwright, context7                    | Frontend + E2E tests  | ~85%          |
+| `apitest`  | postman, context7                       | API testing           | ~90%          |
+| `uitest`   | playwright, devtools, context7          | UI testing            | ~80%          |
+| `report`   | github, atlassian, slack                | Project management    | ~80%          |
+| `docs`     | notion, context7, tavity                | Documentation         | ~80%          |
+| `dbtest`   | supabase, context7                      | Database testing      | ~85%          |
+| `e2etest`  | playwright, postman, supabase, context7 | Full-stack testing    | ~70%          |
+| `full`     | ALL ⚠️                                   | Debugging/exploration | 0%            |
 
 ---
 

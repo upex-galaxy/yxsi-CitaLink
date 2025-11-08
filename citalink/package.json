@@ -1,0 +1,10 @@
+{
+  "name": "citalink-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter web dev"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}
