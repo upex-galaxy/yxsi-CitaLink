@@ -4,6 +4,7 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import CopyPayLink from "@/components/actions/CopyPayLink";
 
 async function getData() {
   const base = process.env.NEXT_PUBLIC_APP_URL || "";
@@ -40,6 +41,7 @@ export default async function List() {
               <TableHead className="text-center">Anticipo</TableHead>
               <TableHead className="text-center">Total</TableHead>
               <TableHead className="text-center">Estado</TableHead>
+              <TableHead>Acciones</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -50,6 +52,7 @@ export default async function List() {
                 <TableCell className="text-center">€ {x.deposit}</TableCell>
                 <TableCell className="text-center">€ {x.total}</TableCell>
                 <TableCell className="text-center"><Status s={x.status} /></TableCell>
+                <TableCell><CopyPayLink id={x.id} /></TableCell>
               </TableRow>
             ))}
           </TableBody>
