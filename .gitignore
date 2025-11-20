@@ -57,3 +57,5 @@ coverage/
 *.log
 citalink/apps/*/.next/
 citalink/apps/*/node_modules/
+
+.backups
