@@ -135,6 +135,211 @@ import { Label } from "@/components/ui/label";
 </div>
 ```
 
+### Textarea
+**Ubicación:** `src/components/ui/textarea.tsx`
+
+Componente de área de texto para formularios con múltiples líneas.
+
+**Ejemplo de uso:**
+```tsx
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+
+<div className="grid w-full gap-1.5">
+  <Label htmlFor="message">Notas de la cita</Label>
+  <Textarea id="message" placeholder="Escribe notas adicionales..." />
+</div>
+```
+
+### Select
+**Ubicación:** `src/components/ui/select.tsx`
+
+Componente de selección desplegable con estilo coherente.
+
+**Ejemplo de uso:**
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+<Select>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Seleccionar estado" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="pending">Pendiente</SelectItem>
+    <SelectItem value="confirmed">Confirmada</SelectItem>
+    <SelectItem value="expired">Expirada</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+### Dialog
+**Ubicación:** `src/components/ui/dialog.tsx`
+
+Componente modal para confirmaciones, formularios y detalles.
+
+**Sub-componentes:** `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`.
+
+**Ejemplo de uso:**
+```tsx
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Crear Nueva Cita</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Nueva Cita</DialogTitle>
+      <DialogDescription>
+        Completa los datos para crear un nuevo CitaLink.
+      </DialogDescription>
+    </DialogHeader>
+    {/* Formulario aquí */}
+    <DialogFooter>
+      <Button type="submit">Guardar</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+
+### Skeleton
+**Ubicación:** `src/components/ui/skeleton.tsx`
+
+Componente placeholder para estados de carga.
+
+**Ejemplo de uso:**
+```tsx
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Loading state para una card
+<Card>
+  <CardHeader>
+    <Skeleton className="h-4 w-[250px]" />
+    <Skeleton className="h-4 w-[200px]" />
+  </CardHeader>
+  <CardContent>
+    <Skeleton className="h-20 w-full" />
+  </CardContent>
+</Card>
+```
+
+### Toast
+**Ubicación:** `src/components/ui/toast.tsx`, `src/components/ui/toaster.tsx`
+
+Sistema de notificaciones toast para feedback al usuario.
+
+**Hook:** `src/hooks/use-toast.ts`
+
+**Ejemplo de uso:**
+```tsx
+import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+
+function MyComponent() {
+  const { toast } = useToast();
+
+  return (
+    <Button
+      onClick={() => {
+        toast({
+          title: "Cita creada exitosamente",
+          description: "El link de pago ha sido generado.",
+        });
+      }}
+    >
+      Crear Cita
+    </Button>
+  );
+}
+
+// No olvides agregar <Toaster /> en tu layout principal
+import { Toaster } from "@/components/ui/toaster";
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        {children}
+        <Toaster />
+      </body>
+    </html>
+  );
+}
+```
+
+### Dropdown Menu
+**Ubicación:** `src/components/ui/dropdown-menu.tsx`
+
+Menú desplegable para acciones contextuales.
+
+**Ejemplo de uso:**
+```tsx
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline">Opciones</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Ver detalles</DropdownMenuItem>
+    <DropdownMenuItem>Editar</DropdownMenuItem>
+    <DropdownMenuItem>Eliminar</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+### Badge
+**Ubicación:** `src/components/ui/badge.tsx`
+
+Componente para etiquetas y estados.
+
+**Variantes:** `default`, `secondary`, `destructive`, `outline`.
+
+**Ejemplo de uso:**
+```tsx
+import { Badge } from "@/components/ui/badge";
+
+<Badge>Pendiente</Badge>
+<Badge variant="destructive">Expirada</Badge>
+<Badge variant="outline">Confirmada</Badge>
+```
+
+### Avatar
+**Ubicación:** `src/components/ui/avatar.tsx`
+
+Componente para mostrar imágenes de perfil con fallback.
+
+**Ejemplo de uso:**
+```tsx
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+<Avatar>
+  <AvatarImage src="https://github.com/user.png" />
+  <AvatarFallback>CN</AvatarFallback>
+</Avatar>
+```
+
 ---
 
 ## 📐 Layout
