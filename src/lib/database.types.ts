@@ -1,4 +1,3 @@
-
 export type Json =
   | string
   | number
@@ -7,80 +6,125 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
-      users: {
+      appointments: {
         Row: {
-          id: string 
-          email: string
-          created_at: string 
+          appointment_date: string
+          clinic_id: string
+          created_at: string
+          deposit_amount: number
+          expires_at: string
+          id: string
+          patient_name: string
+          status: string
+          total_amount: number
         }
         Insert: {
-          id: string 
-          email: string
+          appointment_date: string
+          clinic_id: string
           created_at?: string
+          deposit_amount: number
+          expires_at: string
+          id?: string
+          patient_name: string
+          status?: string
+          total_amount: number
         }
         Update: {
-          email?: string
+          appointment_date?: string
+          clinic_id?: string
+          created_at?: string
+          deposit_amount?: number
+          expires_at?: string
+          id?: string
+          patient_name?: string
+          status?: string
+          total_amount?: number
         }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_clinic_id_fkey"
+            columns: ["clinic_id"]
+            isOneToOne: false
+            referencedRelation: "clinics"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       clinics: {
         Row: {
-          id: string 
+          created_at: string
+          id: string
           name: string
-          stripe_account_id: string | null
           settings: Json | null
-          created_at: string 
-          owner_id: string 
+          stripe_account_id: string | null
         }
         Insert: {
+          created_at?: string
           id?: string
           name: string
-          stripe_account_id?: string | null
           settings?: Json | null
-          created_at?: string
-          owner_id: string
+          stripe_account_id?: string | null
         }
         Update: {
+          created_at?: string
+          id?: string
           name?: string
-          stripe_account_id?: string | null
           settings?: Json | null
+          stripe_account_id?: string | null
         }
+        Relationships: []
       }
-      appointments: {
+      users: {
         Row: {
-          id: string 
-          clinic_id: string 
-          patient_name: string
-          status: "pending" | "confirmed" | "expired"
-          total_amount: number 
-          deposit_amount: number 
-          appointment_date: string 
-          expires_at: string 
-          created_at: string 
+          avatar_url: string | null
+          clinic_id: string | null
+          full_name: string | null
+          id: string
+          updated_at: string
         }
         Insert: {
-          id?: string
-          clinic_id: string
-          patient_name: string
-          status?: "pending" | "confirmed" | "expired"
-          total_amount: number
-          deposit_amount: number
-          appointment_date: string
-          expires_at: string
-          created_at?: string
+          avatar_url?: string | null
+          clinic_id?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string
         }
         Update: {
-          status?: "pending" | "confirmed" | "expired"
+          avatar_url?: string | null
+          clinic_id?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: "users_clinic_id_fkey"
+            columns: ["clinic_id"]
+            isOneToOne: false
+            referencedRelation: "clinics"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "users_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_current_clinic_id: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never

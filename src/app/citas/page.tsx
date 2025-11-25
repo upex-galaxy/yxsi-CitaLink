@@ -1,10 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -23,10 +21,12 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Skeleton } from "@/components/ui/skeleton"
 import { Textarea } from "@/components/ui/textarea"
-import { Calendar, Clock, DollarSign, MoreVertical, Plus, Eye, Edit, Trash2, Link as LinkIcon } from "lucide-react"
-import type { Appointment } from "@/lib/types"
 import { useToast } from "@/hooks/use-toast"
+import type { Appointment } from "@/lib/types"
+import { Calendar, Clock, DollarSign, Edit, Eye, Link as LinkIcon, MoreVertical, Plus, Trash2 } from "lucide-react"
+import { useEffect, useState } from "react"
 
 export default function CitasPage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -41,8 +41,8 @@ export default function CitasPage() {
       clinic_id: "clinic-1",
       patient_name: "Ana García Rodríguez",
       status: "confirmed",
-      total_amount: 120.00,
-      deposit_amount: 25.00,
+      total_amount: 120.0,
+      deposit_amount: 25.0,
       appointment_date: "2025-11-20T10:00:00Z",
       expires_at: "2025-11-20T09:00:00Z",
       created_at: "2025-11-18T09:00:00Z",
@@ -52,8 +52,8 @@ export default function CitasPage() {
       clinic_id: "clinic-1",
       patient_name: "Carlos Ruiz Martínez",
       status: "pending",
-      total_amount: 150.00,
-      deposit_amount: 30.00,
+      total_amount: 150.0,
+      deposit_amount: 30.0,
       appointment_date: "2025-11-20T11:30:00Z",
       expires_at: "2025-11-20T10:30:00Z",
       created_at: "2025-11-18T09:30:00Z",
@@ -63,8 +63,8 @@ export default function CitasPage() {
       clinic_id: "clinic-1",
       patient_name: "María López Fernández",
       status: "confirmed",
-      total_amount: 80.00,
-      deposit_amount: 15.00,
+      total_amount: 80.0,
+      deposit_amount: 15.0,
       appointment_date: "2025-11-20T14:00:00Z",
       expires_at: "2025-11-20T13:00:00Z",
       created_at: "2025-11-18T10:00:00Z",
@@ -74,8 +74,8 @@ export default function CitasPage() {
       clinic_id: "clinic-1",
       patient_name: "Juan Pérez Sánchez",
       status: "pending",
-      total_amount: 95.00,
-      deposit_amount: 20.00,
+      total_amount: 95.0,
+      deposit_amount: 20.0,
       appointment_date: "2025-11-20T15:30:00Z",
       expires_at: "2025-11-20T14:30:00Z",
       created_at: "2025-11-19T08:00:00Z",
@@ -85,8 +85,8 @@ export default function CitasPage() {
       clinic_id: "clinic-1",
       patient_name: "Laura Sánchez González",
       status: "expired",
-      total_amount: 110.00,
-      deposit_amount: 22.00,
+      total_amount: 110.0,
+      deposit_amount: 22.0,
       appointment_date: "2025-11-21T09:00:00Z",
       expires_at: "2025-11-21T08:00:00Z",
       created_at: "2025-11-19T10:00:00Z",
@@ -96,8 +96,8 @@ export default function CitasPage() {
       clinic_id: "clinic-1",
       patient_name: "David Torres Ramírez",
       status: "confirmed",
-      total_amount: 135.00,
-      deposit_amount: 27.00,
+      total_amount: 135.0,
+      deposit_amount: 27.0,
       appointment_date: "2025-11-21T16:00:00Z",
       expires_at: "2025-11-21T15:00:00Z",
       created_at: "2025-11-19T11:00:00Z",
@@ -107,8 +107,8 @@ export default function CitasPage() {
       clinic_id: "clinic-1",
       patient_name: "Elena Martínez Díaz",
       status: "pending",
-      total_amount: 100.00,
-      deposit_amount: 20.00,
+      total_amount: 100.0,
+      deposit_amount: 20.0,
       appointment_date: "2025-11-22T10:00:00Z",
       expires_at: "2025-11-22T09:00:00Z",
       created_at: "2025-11-19T12:00:00Z",
@@ -118,8 +118,8 @@ export default function CitasPage() {
       clinic_id: "clinic-1",
       patient_name: "Roberto Fernández López",
       status: "confirmed",
-      total_amount: 145.00,
-      deposit_amount: 29.00,
+      total_amount: 145.0,
+      deposit_amount: 29.0,
       appointment_date: "2025-11-22T14:30:00Z",
       expires_at: "2025-11-22T13:30:00Z",
       created_at: "2025-11-19T13:00:00Z",
@@ -128,23 +128,23 @@ export default function CitasPage() {
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     }
-    return new Date(dateString).toLocaleDateString('es-ES', options)
+    return new Date(dateString).toLocaleDateString("es-ES", options)
   }
 
   const formatShortDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
-      day: 'numeric',
-      month: 'short',
-      hour: '2-digit',
-      minute: '2-digit'
+      day: "numeric",
+      month: "short",
+      hour: "2-digit",
+      minute: "2-digit",
     }
-    return new Date(dateString).toLocaleDateString('es-ES', options)
+    return new Date(dateString).toLocaleDateString("es-ES", options)
   }
 
   // Simular carga de datos
@@ -156,17 +156,25 @@ export default function CitasPage() {
     return () => clearTimeout(timer)
   }, [])
 
-  const getStatusBadge = (status: "pending" | "confirmed" | "expired") => {
+  // 👇 Corregido: usamos el tipo real de Appointment["status"] y
+  // estrechamos a los estados que este componente sabe pintar.
+  const getStatusBadge = (status: Appointment["status"]) => {
+    if (status !== "confirmed" && status !== "pending" && status !== "expired") {
+      return null
+    }
+
     const variants = {
       confirmed: "default" as const,
       pending: "secondary" as const,
       expired: "destructive" as const,
     }
+
     const labels = {
       confirmed: "Confirmada",
       pending: "Pendiente",
       expired: "Expirada",
     }
+
     return <Badge variant={variants[status]}>{labels[status]}</Badge>
   }
 
@@ -212,18 +220,16 @@ export default function CitasPage() {
   }
 
   // Estadísticas rápidas
-  const confirmedCount = appointments.filter(a => a.status === "confirmed").length
-  const pendingCount = appointments.filter(a => a.status === "pending").length
-  const expiredCount = appointments.filter(a => a.status === "expired").length
+  const confirmedCount = appointments.filter((a) => a.status === "confirmed").length
+  const pendingCount = appointments.filter((a) => a.status === "pending").length
+  const expiredCount = appointments.filter((a) => a.status === "expired").length
 
   return (
     <div className="flex-1 p-8 pt-6">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Gestión de Citas</h2>
-          <p className="text-muted-foreground">
-            Administra todas las citas de tu clínica
-          </p>
+          <p className="text-muted-foreground">Administra todas las citas de tu clínica</p>
         </div>
 
         {/* Dialog para crear nueva cita */}
@@ -245,58 +251,32 @@ export default function CitasPage() {
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
                   <Label htmlFor="patient_name">Nombre del Paciente</Label>
-                  <Input
-                    id="patient_name"
-                    placeholder="Ej: María García López"
-                    required
-                  />
+                  <Input id="patient_name" placeholder="Ej: María García López" required />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="grid gap-2">
                     <Label htmlFor="total_amount">Monto Total (€)</Label>
-                    <Input
-                      id="total_amount"
-                      type="number"
-                      placeholder="150.00"
-                      step="0.01"
-                      required
-                    />
+                    <Input id="total_amount" type="number" placeholder="150.00" step="0.01" required />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="deposit_amount">Anticipo (€)</Label>
-                    <Input
-                      id="deposit_amount"
-                      type="number"
-                      placeholder="30.00"
-                      step="0.01"
-                      required
-                    />
+                    <Input id="deposit_amount" type="number" placeholder="30.00" step="0.01" required />
                   </div>
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="appointment_date">Fecha y Hora</Label>
-                  <Input
-                    id="appointment_date"
-                    type="datetime-local"
-                    required
-                  />
+                  <Input id="appointment_date" type="datetime-local" required />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="notes">Notas (Opcional)</Label>
-                  <Textarea
-                    id="notes"
-                    placeholder="Agrega notas adicionales sobre la cita..."
-                    rows={3}
-                  />
+                  <Textarea id="notes" placeholder="Agrega notas adicionales sobre la cita..." rows={3} />
                 </div>
               </div>
               <DialogFooter>
                 <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
                   Cancelar
                 </Button>
-                <Button type="submit">
-                  Crear Cita y Generar Link
-                </Button>
+                <Button type="submit">Crear Cita y Generar Link</Button>
               </DialogFooter>
             </form>
           </DialogContent>
@@ -308,9 +288,7 @@ export default function CitasPage() {
         <div className="grid gap-4 md:grid-cols-3 mb-6">
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                Confirmadas
-              </CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">Confirmadas</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-600">{confirmedCount}</div>
@@ -318,9 +296,7 @@ export default function CitasPage() {
           </Card>
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                Pendientes
-              </CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">Pendientes</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-yellow-600">{pendingCount}</div>
@@ -328,9 +304,7 @@ export default function CitasPage() {
           </Card>
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                Expiradas
-              </CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">Expiradas</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-red-600">{expiredCount}</div>
@@ -420,11 +394,7 @@ export default function CitasPage() {
                         </div>
                         <div className="grid gap-2">
                           <Label htmlFor="appointment_date_empty">Fecha y Hora</Label>
-                          <Input
-                            id="appointment_date_empty"
-                            type="datetime-local"
-                            required
-                          />
+                          <Input id="appointment_date_empty" type="datetime-local" required />
                         </div>
                         <div className="grid gap-2">
                           <Label htmlFor="notes_empty">Notas (Opcional)</Label>
@@ -439,9 +409,7 @@ export default function CitasPage() {
                         <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
                           Cancelar
                         </Button>
-                        <Button type="submit">
-                          Crear Cita y Generar Link
-                        </Button>
+                        <Button type="submit">Crear Cita y Generar Link</Button>
                       </DialogFooter>
                     </form>
                   </DialogContent>
@@ -486,9 +454,7 @@ export default function CitasPage() {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-                <div className="flex items-center gap-2">
-                  {getStatusBadge(cita.status)}
-                </div>
+                <div className="flex items-center gap-2">{getStatusBadge(cita.status)}</div>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground">
@@ -510,11 +476,7 @@ export default function CitasPage() {
                 </div>
               </CardContent>
               <CardFooter className="pt-3">
-                <Button
-                  variant="outline"
-                  className="w-full"
-                  onClick={() => handleViewDetails(cita)}
-                >
+                <Button variant="outline" className="w-full" onClick={() => handleViewDetails(cita)}>
                   <Eye className="mr-2 h-4 w-4" />
                   Ver Detalles
                 </Button>
